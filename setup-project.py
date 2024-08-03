@@ -29,4 +29,4 @@ build_addressables_script = os.path.join(UNITY_PROJ_PATH, "Assets", "BuildPipeli
 replace_instances_of_string_in_file(build_addressables_script, "TemplateMod", namespace)
 replace_instances_of_string_in_file(build_addressables_script, "templatemod", monoscript_name)
 
-subprocess.Popen("python setup-unity-project.py" cwd=UNITY_PROJ_PATH)
+subprocess.run("python setup-unity-project.py", cwd=UNITY_PROJ_PATH)
