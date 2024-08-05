@@ -2,9 +2,6 @@
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
-using Ultracrypt.Characters;
-using Ultracrypt.Items;
-using Ultracrypt.StatusEffects;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Build;

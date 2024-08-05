@@ -19,9 +19,11 @@ os.rename(os.path.join(PROJECT_PATH, "TemplateMod.csproj"), PROJECT_FILE)
 os.rename(os.path.join(LOCAL_PATH, "unity", "ModAssets"), UNITY_PROJ_PATH)
 
 def replace_instances_of_string_in_file(path : str, to_replace : str, replacement : str) -> None:
-    with open(path, "r+") as f:
+    with open(path) as f:
         oldContent = f.read()
+    with open(path, "w") as f:
         f.write(oldContent.replace(to_replace, replacement))
+        f.truncate();
 
 replace_instances_of_string_in_file(SOLUTION_FILE, "TemplateMod", namespace)
 replace_instances_of_string_in_file(os.path.join(PROJECT_PATH, "Plugin.cs"), "TemplateMod", namespace)
