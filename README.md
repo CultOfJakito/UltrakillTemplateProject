@@ -1,7 +1,7 @@
 # ULTRAKILL Template Project
 A template project for making ULTRAKILL mods using the game's assets as references with addressables.
 
-If you don't have Tundra, this is useless to you.
+***If you don't have Tundra, this is useless to you.***
 
 ## Prerequisites
 - Git installed, set up with an account that **has access to the Tundra organization on GitHub**.
