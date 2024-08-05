@@ -237,6 +237,8 @@ namespace BuildPipeline.Editor
 
 		private static void SetCorrectValuesForSchema(BundledAssetGroupSchema groupSchema)
 		{
+			SetCorrectValuesForSettings(); //if this isnt done then modbuildpath/loadpath may not exist and it will be empty
+
 			groupSchema.IncludeInBuild = true;
 			groupSchema.IncludeAddressInCatalog = true;
 			groupSchema.BuildPath.SetVariableByName(Settings, "ModBuildPath");
