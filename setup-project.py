@@ -27,8 +27,9 @@ def replace_instances_of_string_in_file(path : str, to_replace : str, replacemen
 
 replace_instances_of_string_in_file(SOLUTION_FILE, "TemplateMod", namespace)
 replace_instances_of_string_in_file(os.path.join(PROJECT_PATH, "Plugin.cs"), "TemplateMod", namespace)
+replace_instances_of_string_in_file(os.path.join(PROJECT_PATH, "Assets", "AssetManager.cs"), "TemplateMod", namespace)
 build_addressables_script = os.path.join(UNITY_PROJ_PATH, "Assets", "BuildPipeline", "Editor", "BuildAddressables.cs")
 replace_instances_of_string_in_file(build_addressables_script, "TemplateMod", namespace)
 replace_instances_of_string_in_file(build_addressables_script, "templatemod", monoscript_name)
 
-subprocess.run("python setup-unity-project.py", cwd=UNITY_PROJ_PATH)
+subprocess.run("py setup-unity-project.py", cwd=UNITY_PROJ_PATH)
