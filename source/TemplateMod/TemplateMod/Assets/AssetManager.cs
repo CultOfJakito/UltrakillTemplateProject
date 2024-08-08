@@ -12,7 +12,7 @@ public static class AssetManager
     private static bool s_dontSanitizeScenes;
 
     // ReSharper disable once MemberCanBePrivate.Global     DO NOT MAKE THIS PRIVATE this took me 6 hours to debug
-    private static string AssetPath => Path.Combine(ModFolder, "Assets");
+    public static string AssetPath => Path.Combine(ModFolder, "Assets");
     private static string ModFolder => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new Exception("Somehow the assembly doesn't have a location. I don't think this is possible.");
     private static string CatalogPath => Path.Combine(AssetPath, "catalog_wbp.json");
 

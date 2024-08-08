@@ -65,6 +65,7 @@ def error_cleanup() -> None:
 
 # copy configs
 copy_folders_from_repo("Tundra-Editor/Core", os.path.join(LOCAL_PATH, "Assets"), ["BuiltInResources", "Lib", "Runtime"])
+shutil.copytree(os.path.join(LOCAL_PATH, "Assets", "BuiltInResources"), os.path.join(LOCAL_PATH, "Assets", "BuildPipeline", "BuiltInResources"))
 
 #copy runtime dir
 copy_folders_from_repo("Tundra-Editor/Config", os.path.join(LOCAL_PATH), ["ProjectSettings", "Packages"])
