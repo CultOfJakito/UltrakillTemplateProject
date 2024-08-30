@@ -34,8 +34,10 @@ namespace BuildPipeline.Editor
 			}
 		}
 
-		public static void ReplaceRendererMaterial(Renderer renderer)
+		public static bool ReplaceRendererMaterial(Renderer renderer)
 		{
+			bool hasReplaced = false;
+			
 			for (int i = 0; i < renderer.sharedMaterials.Length; i++)
 			{
 				Material material = renderer.sharedMaterials[i];
@@ -49,7 +51,10 @@ namespace BuildPipeline.Editor
 				Material replacement = GetReplacement(sharedMaterials[i]);
 				sharedMaterials[i] = replacement;
 				renderer.sharedMaterials = sharedMaterials;
+				hasReplaced = true;
 			}
+
+			return hasReplaced;
 		}
 
 		private static Material GetReplacement(Material material)

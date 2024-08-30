@@ -43,14 +43,23 @@ namespace BuildPipeline.Editor
         {
             UnityEngine.Debug.Log($"Processing prefab: {assetPath}");
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+            bool shouldSave = false;
             
             foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
-                BuiltInReplacementEditor.ReplaceRendererMaterial(renderer);
-                PrefabUtility.RecordPrefabInstancePropertyModifications(renderer);
+                bool didReplace = BuiltInReplacementEditor.ReplaceRendererMaterial(renderer);
+                shouldSave = shouldSave || didReplace;
+
+                if (didReplace)
+                {
+                    PrefabUtility.RecordPrefabInstancePropertyModifications(renderer);
+                }
             }
 
-            PrefabUtility.SavePrefabAsset(prefab);
+            if (shouldSave)
+            {
+                PrefabUtility.SavePrefabAsset(prefab);
+            }
         }
     }
 }
