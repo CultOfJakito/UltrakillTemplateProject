@@ -12,4 +12,4 @@ A template project for making ULTRAKILL mods using the game's assets as referenc
 1. Run `py setup-project.py` in the root directory of the repo.
 2. Enter the namespace, unity project name, and addressable prefix.
 
-These steps will generate a .NET Standard 2.1 project and Unity project in the `source` and `unity` directories.
+These steps will generate a .NET Standard 2.0 (not 2.1, that breaks things) project and Unity project in the `source` and `unity` directories.
