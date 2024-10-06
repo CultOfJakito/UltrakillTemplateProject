@@ -8,6 +8,8 @@ namespace TemplateMod;
 [BepInPlugin(Guid, Name, Version)]
 public class Plugin : BaseUnityPlugin
 {
+    // ReSharper disable once MemberCanBePrivate.Global
+    // This should be public so other mods can access it, e.g. for the dependency attribute
     private const string Guid = "yourname.modname";
     private const string Name = "Template";
     private const string Version = "1.0.0";

@@ -40,15 +40,14 @@ namespace BuildPipeline.Editor
 			
 			for (int i = 0; i < renderer.sharedMaterials.Length; i++)
 			{
-				Material material = renderer.sharedMaterials[i];
+				Material replacement = GetReplacement(renderer.sharedMaterials[i]);
 
-				if (material == null || !AssetDatabase.GetAssetPath(material).StartsWith(UnityBuiltInPath))
+				if (replacement == null)
 				{
 					continue;
 				}
 				
 				Material[] sharedMaterials = renderer.sharedMaterials;
-				Material replacement = GetReplacement(sharedMaterials[i]);
 				sharedMaterials[i] = replacement;
 				renderer.sharedMaterials = sharedMaterials;
 				hasReplaced = true;
@@ -59,17 +58,16 @@ namespace BuildPipeline.Editor
 
 		private static Material GetReplacement(Material material)
 		{
-			string path = string.Format(BuiltInMaterialPath, material.name);
-
-			if (!Directory.Exists(BuiltInMaterialFolder))
+			if (material == null) 
 			{
-				Directory.CreateDirectory(BuiltInMaterialFolder);
+				return null;
 			}
+
+			string path = string.Format(BuiltInMaterialPath, material.name);
 			
 			if (!File.Exists(path))
 			{
-				Material duplicate = new Material(material);
-				AssetDatabase.CreateAsset(duplicate, path);
+				return null;
 			}
 			
 			return AssetDatabase.LoadAssetAtPath<Material>(path);

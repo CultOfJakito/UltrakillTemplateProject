@@ -64,7 +64,7 @@ def error_cleanup() -> None:
         subprocess.call(f"git rm \"{tuple[1]}\"")
 
 # copy configs
-copy_folders_from_repo("Tundra-Editor/Core", os.path.join(LOCAL_PATH, "Assets"), ["BuiltInResources", "Lib", "Runtime"])
+copy_folders_from_repo("Tundra-Editor/Core", os.path.join(LOCAL_PATH, "Assets"), ["Lib", "Runtime"])
 shutil.copytree(os.path.join(LOCAL_PATH, "Assets", "BuiltInResources"), os.path.join(LOCAL_PATH, "Assets", "BuildPipeline", "BuiltInResources"))
 
 #copy runtime dir

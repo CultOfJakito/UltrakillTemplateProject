@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 namespace BuildPipeline.Editor
