@@ -17,7 +17,6 @@ namespace BuildPipeline.Editor
 
 		private void OnEnable()
 		{
-  			return; //not sure if you need this but im keeping it in src for later :3
 			// major hack, need to get the custom inspector for the renderer to call OnInspectorGUI but its private,,,
 			Assembly assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
 			Type typeEditor = assembly.GetType("UnityEditor." + EditorName);
