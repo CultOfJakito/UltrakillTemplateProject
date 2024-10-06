@@ -13,6 +13,7 @@ namespace BuildPipeline.Editor
         
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
+            return; //i dont think you actually need this
             // call needs to be delayed as LoadPrefabContents crashes called from OnPostprocessAllAssets 
             // https://issuetracker.unity3d.com/issues/editor-freezes-when-prefabutility-dot-loadprefabcontents-is-called-in-assetpostprocessor-dot-onpostprocessallassets-for-a-moved-prefab
             EditorApplication.delayCall += () => ProcessPrefabs(importedAssets);
