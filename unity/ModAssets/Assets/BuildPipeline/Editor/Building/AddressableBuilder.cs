@@ -32,6 +32,7 @@ namespace BuildPipeline.Editor.Building
 			SetCorrectValuesForSettings();
 			CreateEmptyGroup();
 			SetDefaultValuesForSchemas();
+			CheckDefaultGroupAndSet();
 
 			if (!Directory.Exists(s_buildPath))
 			{
@@ -123,6 +124,28 @@ namespace BuildPipeline.Editor.Building
                 AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
                 AddressableAssetSettingsDefaultObject.Settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>(assetPath);
             }
+        }
+
+	// the build path of the monoscript bundle is dependant on the default group so we need to set it to a wbp one
+        private static void CheckDefaultGroupAndSet()
+        {
+            string defaultGroupBuildPath = Settings.DefaultGroup.GetSchema<BundledAssetGroupSchema>()?.BuildPath.GetName(Settings);
+
+            if (defaultGroupBuildPath == "ModBuildPath" && Settings.DefaultGroup.name != EmptyGroupName)
+            {
+                return;
+            }
+
+            AddressableAssetGroup firstWbp = Settings.groups.FirstOrDefault(x => x.GetSchema<BundledAssetGroupSchema>()?.BuildPath.GetName(Settings) == "ModBuildPath" && x.name != EmptyGroupName);
+
+            if (firstWbp == null)
+            {
+                EditorUtility.DisplayDialog("WBP Build Error", $"Unable to set default group to a WBP one (excl. {EmptyGroupName}) as none were found.\nBuilding has been cancelled, make a WBP group before rebuilding.", "OK");
+                throw new Exception("No WBP group");
+            }
+
+            Settings.DefaultGroup = firstWbp;
+            RefreshGroups();
         }
         
         private static void SetCorrectValuesForSettings()
