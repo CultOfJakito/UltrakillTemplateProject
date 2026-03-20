@@ -1,0 +1,11 @@
+<Project>
+    <Import Condition="Exists('UltrakillDir.user')" Project="UltrakillDir.user"/>
+    
+    <PropertyGroup Condition="$(UltrakillDir) == ''">
+        <UltrakillDir>C:/Program Files (x86)/Steam/steamapps/common/ULTRAKILL/</UltrakillDir>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <ManagedDir>$(UltrakillDir)/ULTRAKILL_Data/Managed/</ManagedDir>
+    </PropertyGroup>
+</Project>
